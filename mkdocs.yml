@@ -1,0 +1,5 @@
+site_name: OpenPecha
+theme:
+  name: material
+nav:
+  - Introduction: index.md
