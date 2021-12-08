@@ -4,3 +4,5 @@ theme:
 nav:
   - Introduction: index.md
   - OPF Format: opf-format.md
+  - Importers: importers.md
+  - Exporters: exporters.md

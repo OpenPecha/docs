@@ -42,3 +42,58 @@ or follow this live example [P0000001](https://github.com/OpenPecha/P000001/tree
 In the example above, the text has the globally unique and persistent identifier “P000780”; its source text is the “base” directory. (In this case, it comes from an image scan and its raw OCR data found in the github release “v0.1”). It is then formatted as an OPF base text. This OPF has annotation layers for metadata (meta.yml), index/toc (index.yml), and titles (title.yml). “Layers” is simply a list of the annotation layers that are linked to the text, and “title” is a layer that gives formatting annotations for titles (similar to the <title></title> inline tag in HTML).
 
 The key to the format is the Index. The Index splits a text into subsections, and gives these sections unique identifiers (UUIDs). These logical units, for convenience’s sake, use the source document’s splits. Any annotation reference is also then stored in the Index as a unique ID associated with a span of characters. Whenever there’s a change to the base text, these spans are updated. Whenever an annotation is referred to outside the Index, however, it isn’t referred to as a span (as it is in a tag system like XML, for example), but as an ID.
+
+## Layers
+
+Layers are represented by YAML file. They are just collection of a particular types of annotations with some attributes. Here is the example of Correction layer:
+
+```yaml
+id: 2ea1861be051406a858307cd592ef5ec
+annotation_type: Correction
+revision: '00001'
+annotations:
+  1e19a11e32d54d7897021d5be594d563:
+    correction: མཆིའོ་
+    certainty: null
+    span:
+      start: 145863
+      end: 145868
+  497e4044c77b4877a233a3c98b267672:
+    correction: མཆིའོ་
+    certainty: null
+    span:
+      start: 145966
+      end: 145971
+```
+
+## Annotations
+
+All the annotations in OPF are just span of start and end character index of the base layer and some attributes of the particular annotation. The most simplest form of annotation is just having the a span. Here is the list of annotation currently supported by OpenPecha
+
+```python
+class LayerEnum(Enum, str):
+    index = "index"
+
+    book_title = "BookTitle"
+    sub_title = "SubTitle"
+    book_number = "BookNumber"
+    poti_title = "PotiTitle"
+    author = "Author"
+    chapter = "Chapter"
+
+    topic = "Text"
+    sub_topic = "SubText"
+
+    pagination = "Pagination"
+    citation = "Citation"
+    correction = "Correction"
+    error_candidate = "ErrorCandidate"
+    peydurma = "Peydurma"
+    sabche = "Sabche"
+    tsawa = "Tsawa"
+    yigchung = "Yigchung"
+    archaic = "Archaic"
+    durchen = "Durchen"
+    footnote = "Footnote"
+    segment = "Segment"
+```
