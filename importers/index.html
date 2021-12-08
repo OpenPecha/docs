@@ -13,7 +13,7 @@
     
     
       
-        <title>OPF Format - OpenPecha</title>
+        <title>Importers - OpenPecha</title>
       
     
     
@@ -58,7 +58,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#opf-format" class="md-skip">
+        <a href="#openpecha-importers" class="md-skip">
           Skip to content
         </a>
       
@@ -91,7 +91,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              OPF Format
+              Importers
             
           </span>
         </div>
@@ -190,6 +190,21 @@
 
   
   
+  
+    <li class="md-nav__item">
+      <a href="../opf-format/" class="md-nav__link">
+        OPF Format
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
     
   
   
@@ -201,77 +216,10 @@
         
       
       
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          OPF Format
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
       <a href="./" class="md-nav__link md-nav__link--active">
-        OPF Format
-      </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#openpecha-repositories" class="md-nav__link">
-    OpenPecha Repositories
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#opf-files" class="md-nav__link">
-    OPF Files
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#layers" class="md-nav__link">
-    Layers
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#annotations" class="md-nav__link">
-    Annotations
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
-    </li>
-  
-
-    
-      
-      
-      
-
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../importers/" class="md-nav__link">
         Importers
       </a>
+      
     </li>
   
 
@@ -311,42 +259,6 @@
     
   
   
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#openpecha-repositories" class="md-nav__link">
-    OpenPecha Repositories
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#opf-files" class="md-nav__link">
-    OPF Files
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#layers" class="md-nav__link">
-    Layers
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#annotations" class="md-nav__link">
-    Annotations
-  </a>
-  
-</li>
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -358,112 +270,8 @@
               
                 
 
-<h1 id="opf-format">OPF Format</h1>
-<h2 id="openpecha-repositories">OpenPecha Repositories</h2>
-<p>OpenPecha etexts are stored as Git repositories. At its heart, Git is a version control system that manages and stores revisions of digital projects. OpenPecha simply uses Git to store and manage versions of Tibetan texts. Within the Git system, OPF files come with the following branches:</p>
-<ul>
-<li>Master<ul>
-<li>The master branch contains the .opf, which is protected</li>
-<li>Only admins and text owners can directly update the master branch from the other online branches</li>
-</ul>
-</li>
-<li>Publication<ul>
-<li>The publication branch is for collaboratively improving the text</li>
-<li>Only admin or text owners can merge changes from the publication branch to the master branch</li>
-<li>Github action is set up in such a way that it looks for commands issued by the owner in the commits, then updates the .opf in the master branch if there are changes in the publication branch</li>
-</ul>
-</li>
-<li>Custom repos:<ul>
-<li>This is where users outside of the collaboration team can edit text and export the text into a desirable format—so long as the parser can handle the user’s specifications, they can collaborate with OpenPecha to create it</li>
-<li>These edits are not recorded, so they are not used for updating the master branch OPF</li>
-<li>The exported text is released in the “temp” section of the release</li>
-</ul>
-</li>
-<li>Releases<ul>
-<li>Initial section contains the src text as-is; they may be plain text, ebook, HFML, word, etc</li>
-<li>Temp section contains the exported text of the user outside of the collaboration</li>
-<li>V### section contains the official release of the exported text</li>
-</ul>
-</li>
-</ul>
-<h2 id="opf-files">OPF Files</h2>
-<p>OPF is an open folder format, which means it’s not a compiled file, but simply an open folder with a specific hierarchy. Every OpenPecha file consists of a base text (or base texts, in the case of works with multiple volumes) in plain text (ie, v001.txt, also called the base layer) in the “base” folder and its annotations (layer_name.yml) in the corresponding “v001” folder of the “layers” folder. OPF assumes that pecha with a single base layer has only one volume. A sample OPF file might have an internal structure something like this :</p>
-<ul>
-<li>📁  P000780.opf<ul>
-<li>📄 index.yml</li>
-<li>📄 meta.yml</li>
-<li>📁 base<ul>
-<li>v001.txt</li>
-<li>v002.txt</li>
-</ul>
-</li>
-<li>📁 layers<ul>
-<li>📁 v001<ul>
-<li>📄 Title.yml</li>
-<li>📄 Author.yml</li>
-<li>📄 Tsawa.yml</li>
-<li>📄 Yigchung.yml</li>
-</ul>
-</li>
-<li>📁 v002<ul>
-<li>📄 title.yml</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<p>or follow this live example <a href="https://github.com/OpenPecha/P000001/tree/master/P000001.opf">P0000001</a></p>
-<p>In the example above, the text has the globally unique and persistent identifier “P000780”; its source text is the “base” directory. (In this case, it comes from an image scan and its raw OCR data found in the github release “v0.1”). It is then formatted as an OPF base text. This OPF has annotation layers for metadata (meta.yml), index/toc (index.yml), and titles (title.yml). “Layers” is simply a list of the annotation layers that are linked to the text, and “title” is a layer that gives formatting annotations for titles (similar to the <title></title> inline tag in HTML).</p>
-<p>The key to the format is the Index. The Index splits a text into subsections, and gives these sections unique identifiers (UUIDs). These logical units, for convenience’s sake, use the source document’s splits. Any annotation reference is also then stored in the Index as a unique ID associated with a span of characters. Whenever there’s a change to the base text, these spans are updated. Whenever an annotation is referred to outside the Index, however, it isn’t referred to as a span (as it is in a tag system like XML, for example), but as an ID.</p>
-<h2 id="layers">Layers</h2>
-<p>Layers are represented by YAML file. They are just collection of a particular types of annotations with some attributes. Here is the example of Correction layer:</p>
-<pre><code class="language-yaml">id: 2ea1861be051406a858307cd592ef5ec
-annotation_type: Correction
-revision: '00001'
-annotations:
-  1e19a11e32d54d7897021d5be594d563:
-    correction: མཆིའོ་
-    certainty: null
-    span:
-      start: 145863
-      end: 145868
-  497e4044c77b4877a233a3c98b267672:
-    correction: མཆིའོ་
-    certainty: null
-    span:
-      start: 145966
-      end: 145971
-</code></pre>
-<h2 id="annotations">Annotations</h2>
-<p>All the annotations in OPF are just span of start and end character index of the base layer and some attributes of the particular annotation. The most simplest form of annotation is just having the a span. Here is the list of annotation currently supported by OpenPecha</p>
-<pre><code class="language-python">class LayerEnum(Enum, str):
-    index = &quot;index&quot;
-
-    book_title = &quot;BookTitle&quot;
-    sub_title = &quot;SubTitle&quot;
-    book_number = &quot;BookNumber&quot;
-    poti_title = &quot;PotiTitle&quot;
-    author = &quot;Author&quot;
-    chapter = &quot;Chapter&quot;
-
-    topic = &quot;Text&quot;
-    sub_topic = &quot;SubText&quot;
-
-    pagination = &quot;Pagination&quot;
-    citation = &quot;Citation&quot;
-    correction = &quot;Correction&quot;
-    error_candidate = &quot;ErrorCandidate&quot;
-    peydurma = &quot;Peydurma&quot;
-    sabche = &quot;Sabche&quot;
-    tsawa = &quot;Tsawa&quot;
-    yigchung = &quot;Yigchung&quot;
-    archaic = &quot;Archaic&quot;
-    durchen = &quot;Durchen&quot;
-    footnote = &quot;Footnote&quot;
-    segment = &quot;Segment&quot;
-</code></pre>
+<h1 id="openpecha-importers">OpenPecha Importers</h1>
+<p>Openpecha Importers are just plugins that import text into OPF.</p>
 
               
             </article>
@@ -477,7 +285,7 @@ annotations:
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
         
-        <a href=".." class="md-footer__link md-footer__link--prev" aria-label="Previous: Introduction" rel="prev">
+        <a href="../opf-format/" class="md-footer__link md-footer__link--prev" aria-label="Previous: OPF Format" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
           </div>
@@ -486,20 +294,20 @@ annotations:
               <span class="md-footer__direction">
                 Previous
               </span>
-              Introduction
+              OPF Format
             </div>
           </div>
         </a>
       
       
         
-        <a href="../importers/" class="md-footer__link md-footer__link--next" aria-label="Next: Importers" rel="next">
+        <a href="../exporters/" class="md-footer__link md-footer__link--next" aria-label="Next: Exporters" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              Importers
+              Exporters
             </div>
           </div>
           <div class="md-footer__button md-icon">
