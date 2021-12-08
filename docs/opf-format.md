@@ -70,7 +70,7 @@ annotations:
 
 All the annotations in OPF are just span of start and end character index of the base layer and some attributes of the particular annotation. The most simplest form of annotation is just having the a span. Here is the list of annotation currently supported by OpenPecha
 
-```python
+```Python
 class LayerEnum(Enum, str):
     index = "index"
 
